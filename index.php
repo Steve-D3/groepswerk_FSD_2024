@@ -1,5 +1,12 @@
 <?php
 include_once "includes/css_js.inc.php";
+include_once "includes/db.inc.php";
+$items = getGeoCaches();
+
+
+echo "<pre>";
+print_r($items);
+echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">

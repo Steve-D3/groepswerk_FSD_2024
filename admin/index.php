@@ -1,6 +1,7 @@
 <?php
 $_SERVER["admin"] = true;
 include_once "../includes/css_js.inc.php";
+include_once "../includes/db.inc.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

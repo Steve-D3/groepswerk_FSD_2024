@@ -12,5 +12,8 @@
     "preview:php": "php -S localhost:8080"
   },
   "author": "David Verhulst",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^6.0.3"
+  }
 }
