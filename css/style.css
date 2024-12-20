@@ -9,7 +9,31 @@
   box-sizing: border-box;
 }
 body {
-  background-color: green;
+  height: 100vh;
+  main {
+    background-color: #e6e0d4;
+    height: 100%;
+
+    display: grid;
+    grid-template-rows: 30% auto;
+
+    .section1 {
+      background-color: red;
+      align-content: center;
+      text-align: center;
+      
+
+      h2 {
+        padding: 3rem;
+      }
+
+      ul {
+        display: flex;
+        justify-content: space-around;
+        
+      }
+    }
+  }
 }
 body * {
   line-height: calc(2px + 2ex + 2px);

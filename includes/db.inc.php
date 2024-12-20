@@ -1,11 +1,13 @@
 <?php
 
+// CONNECTIE MAKEN MET DE DB
 function connectToDB()
 {
+    // CONNECTIE CREDENTIALS
     $db_host = '127.0.0.1';
     $db_user = 'root';
     $db_password = 'root';
-    $db_db = 'phpbasis';
+    $db_db = 'mydb';
     $db_port = 8889;
 
     try {
@@ -19,11 +21,12 @@ function connectToDB()
 }
 
 
+// HAAL ALLE NEWS ITEMS OP UIT DE DB
 function getData(): array
 {
     $sql = "SELECT * FROM dishes";
+
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
