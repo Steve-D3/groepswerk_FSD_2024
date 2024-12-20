@@ -1,16 +1,20 @@
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+// ini_set('display_errors', '1');
+// ini_set('display_startup_errors', '1');
+// error_reporting(E_ALL);
 
 include_once "includes/css_js.inc.php";
 include_once "includes/db.inc.php";
+
+$env = parse_ini_file('.env');
+
 
 
 $data = getData();
 
 echo "<pre>";
-print_r($data);
+// print_r($data);
+print_r($env);
 echo "</pre>";
 
 ?>
@@ -42,26 +46,13 @@ echo "</pre>";
 
         <section class="section2">
             <ul>
-                <li>
-                    <a href="#">food1</a>
-                    <!-- img -->
-                </li>
-                <li>
-                    <a href="#">food2</a>
-                    <!-- img -->
-                </li>
-                <li>
-                    <a href="#">food3</a>
-                    <!-- img -->
-                </li>
-                <li>
-                    <a href="#">food4</a>
-                    <!-- img -->
-                </li>
-                <li>
-                    <a href="#">food5</a>
-                    <!-- img -->
-                </li>
+                <?php foreach ($data as $elem): ?>
+                    <li>
+                        <a href="#"><?= $elem["dish_name"]; ?></a>
+                        <img src=<?= $elem["image_url"]; ?> alt="">
+                        <p><?= $elem["description"] ?></p>
+                    </li>
+                <? endforeach; ?>
             </ul>
         </section>
 

@@ -1,14 +1,16 @@
 <?php
 
+$env = parse_ini_file('.env');
 // CONNECTIE MAKEN MET DE DB
 function connectToDB()
 {
+    global $env;
     // CONNECTIE CREDENTIALS
-    $db_host = '127.0.0.1';
-    $db_user = 'root';
-    $db_password = 'root';
-    $db_db = 'mydb';
-    $db_port = 8889;
+    $db_host = $env["DB_HOST"];
+    $db_user = $env["DB_USER"];
+    $db_password = $env["DB_PASS"];
+    $db_db = $env["DB_DATABASE"];
+    $db_port = $env["DB_PORT"];
 
     try {
         $db = new PDO('mysql:host=' . $db_host . '; port=' . $db_port . '; dbname=' . $db_db, $db_user, $db_password);
