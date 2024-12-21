@@ -26,9 +26,35 @@ function connectToDB()
 // HAAL ALLE NEWS ITEMS OP UIT DE DB
 function getData(): array
 {
-    $sql = "SELECT * FROM dishes";
+    $sql = "SELECT 
+    dishes.id as id,
+    dishes.name as dish, 
+    dishes.description AS description,  
+    dishes.img_url as img,
+    country.name as Country,
+    continent.name as Continent 
+    from dishes
+
+    left join country_has_dishes
+    on dishes.id = dishes_id
+
+    left join country
+    on country.id = country_id
+
+    left join continent
+    on continent_id = continent.id";
 
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+function getMenuOptions() {
+    $sql = "SELECT * FROM continent";
+
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+

@@ -1,7 +1,7 @@
 <?php
-// ini_set('display_errors', '1');
-// ini_set('display_startup_errors', '1');
-// error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
 include_once "includes/css_js.inc.php";
 include_once "includes/db.inc.php";
@@ -11,10 +11,10 @@ $env = parse_ini_file('.env');
 
 
 $data = getData();
+$menuOptions = getMenuOptions();
 
 echo "<pre>";
 // print_r($data);
-print_r($env);
 echo "</pre>";
 
 ?>
@@ -25,7 +25,7 @@ echo "</pre>";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEBSITE HOMEPAGE</title>
+    <title>DISHES</title>
     <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
     <script type="module" src="./dist/<?= $jsPath ?>"></script>
 </head>
@@ -33,13 +33,12 @@ echo "</pre>";
 <body>
     <main>
         <section class="section1">
-            <h2>Title</h2>
+            <h2>Dishes from the world</h2>
             <div>
                 <ul>
-                    <li>test 1</li>
-                    <li>test 2</li>
-                    <li>test 3</li>
-                    <li>test 4</li>
+                    <?php foreach ($menuOptions as $option): ?>
+                        <li><a href="#"><?= $option["name"] ?></a></li>
+                    <? endforeach; ?>
                 </ul>
             </div>
         </section>
@@ -48,8 +47,8 @@ echo "</pre>";
             <ul>
                 <?php foreach ($data as $elem): ?>
                     <li>
-                        <a href="#"><?= $elem["dish_name"]; ?></a>
-                        <img src=<?= $elem["image_url"]; ?> alt="">
+                        <a href="#"><?= $elem["dish"]; ?></a>
+                        <img src=<?= $elem["img"]; ?> alt="">
                         <p><?= $elem["description"] ?></p>
                     </li>
                 <? endforeach; ?>

@@ -9,6 +9,7 @@
   box-sizing: border-box;
 }
 body {
+  min-width: 300px;
   height: 100vh;
   main {
     background-color: #e6e0d4;
@@ -29,22 +30,30 @@ body {
       ul {
         display: flex;
         justify-content: space-around;
+
+        li {
+          background-color: purple;
+          padding: 3rem 0;
+          width: 14rem;
+
+        }
+        
       }
     }
 
     .section2 {
+      margin: 2rem;
       ul {
         display: grid;
         align-items: center;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1.5fr));
-        gap: 1.5rem; 
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1.5fr));
+        gap: 1.5rem;
 
-        
         li {
           text-align: center;
           align-items: center;
 
-          min-height: 300px;
+          min-height: 500px;
           width: 100%;
 
           display: flex;
@@ -55,13 +64,16 @@ body {
 
           background-color: aqua;
 
-          a{
+          p{
+            padding: 0 6rem;
+          }
+          a {
             width: 100%;
             height: 30px;
           }
           img {
-            height: 200px;
-            width: 200px;
+            height: 350px;
+            width: 350px;
           }
         }
       }
@@ -70,5 +82,5 @@ body {
 }
 body * {
   line-height: calc(2px + 2ex + 2px);
-  font-size: 1rem;
+  font-size: 1.8rem;
 }
