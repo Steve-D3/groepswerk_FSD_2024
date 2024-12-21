@@ -47,7 +47,7 @@ echo "</pre>";
             <ul>
                 <?php foreach ($data as $elem): ?>
                     <li>
-                        <a href="#"><?= $elem["dish"]; ?></a>
+                        <a href="<?= $elem["id"]; ?>"><?= $elem["dish"]; ?></a>
                         <img src=<?= $elem["img"]; ?> alt="">
                         <p><?= $elem["description"] ?></p>
                     </li>
