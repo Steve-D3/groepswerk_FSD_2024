@@ -78,11 +78,12 @@ foreach ($data as $elem) {
                             height: 40px;
                             box-shadow: none;
                         }
-                        &:first-of-type{
+
+                        &:first-of-type {
                             right: 0;
                         }
 
-                        &:last-of-type{
+                        &:last-of-type {
                             left: 0;
                         }
                     }
@@ -140,6 +141,7 @@ foreach ($data as $elem) {
                         width: 25px;
                         height: 25px;
                     }
+
                 }
 
             }

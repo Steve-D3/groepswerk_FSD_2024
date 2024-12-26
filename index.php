@@ -7,7 +7,7 @@ include_once "includes/css_js.inc.php";
 include_once "includes/db.inc.php";
 
 echo "<pre>";
-print_r($data[0]);
+// print_r($data);
 echo "</pre>";
 
 ?>
