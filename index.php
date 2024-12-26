@@ -6,15 +6,8 @@ error_reporting(E_ALL);
 include_once "includes/css_js.inc.php";
 include_once "includes/db.inc.php";
 
-$env = parse_ini_file('.env');
-
-
-
-$data = getData();
-$menuOptions = getMenuOptions();
-
 echo "<pre>";
-// print_r($data);
+print_r($data[0]);
 echo "</pre>";
 
 ?>
@@ -47,7 +40,7 @@ echo "</pre>";
             <ul>
                 <?php foreach ($data as $elem): ?>
                     <li>
-                        <a href="<?= $elem["id"]; ?>"><?= $elem["dish"]; ?></a>
+                        <a href="detail.php?id=<?= $elem["id"]; ?>"><?= $elem["dish"]; ?></a>
                         <img src=<?= $elem["img"]; ?> alt="">
                         <p><?= $elem["description"] ?></p>
                     </li>

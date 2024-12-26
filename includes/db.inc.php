@@ -1,6 +1,8 @@
 <?php
 
 $env = parse_ini_file('.env');
+$data = getData();
+$menuOptions = getMenuOptions();
 // CONNECTIE MAKEN MET DE DB
 function connectToDB()
 {
