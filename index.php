@@ -6,6 +6,10 @@ error_reporting(E_ALL);
 include_once "includes/css_js.inc.php";
 include_once "includes/db.inc.php";
 
+
+$selectedContinent = isset($_GET['continent_id']) ? intval($_GET['continent_id']) : null;
+$data = getData($selectedContinent);
+
 echo "<pre>";
 // print_r($data);
 echo "</pre>";
@@ -30,7 +34,7 @@ echo "</pre>";
             <div>
                 <ul>
                     <?php foreach ($menuOptions as $option): ?>
-                        <li><a href="#"><?= $option["name"] ?></a></li>
+                        <li><a href="index.php?continent_id=<?= $option["id"] ?>"><?= $option["name"] ?></a></li>
                     <? endforeach; ?>
                 </ul>
             </div>

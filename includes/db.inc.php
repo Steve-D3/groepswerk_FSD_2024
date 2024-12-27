@@ -1,7 +1,6 @@
 <?php
 
 $env = parse_ini_file('.env');
-$data = getData();
 $menuOptions = getMenuOptions();
 // CONNECTIE MAKEN MET DE DB
 function connectToDB()
@@ -26,27 +25,34 @@ function connectToDB()
 
 
 // HAAL ALLE NEWS ITEMS OP UIT DE DB
-function getData(): array
+function getData($continentId = null): array
 {
     $sql = "SELECT 
-    dishes.id as id,
-    dishes.name as dish, 
-    dishes.description AS description,  
-    dishes.img_url as img,
-    country.name as Country,
-    continent.name as Continent 
-    from dishes
+        dishes.id AS id,
+        dishes.name AS dish, 
+        dishes.description AS description,  
+        dishes.img_url AS img,
+        country.name AS Country,
+        continent.name AS Continent 
+    FROM dishes
+    LEFT JOIN country_has_dishes
+        ON dishes.id = country_has_dishes.dishes_id
+    LEFT JOIN country
+        ON country.id = country_has_dishes.country_id
+    LEFT JOIN continent
+        ON country.continent_id = continent.id";
 
-    left join country_has_dishes
-    on dishes.id = dishes_id
-
-    left join country
-    on country.id = country_id
-
-    left join continent
-    on continent_id = continent.id";
+    // Voeg een filter toe als een continentId is meegegeven
+    if ($continentId) {
+        $sql .= " WHERE continent.id = :continentId";
+    }
 
     $stmt = connectToDB()->prepare($sql);
+
+    if ($continentId) {
+        $stmt->bindParam(':continentId', $continentId, PDO::PARAM_INT);
+    }
+
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -60,3 +66,13 @@ function getMenuOptions() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
+function getExtraImages($dishId){
+     $sql = "SELECT img_url FROM dish_images WHERE dish_id = :dish_id";
+
+     $stmt = connectToDB()->prepare($sql);
+     $stmt->bindParam(':dish_id', $dishId, PDO::PARAM_INT);
+     $stmt->execute();
+ 
+     return $stmt->fetchAll(PDO::FETCH_COLUMN);
+}

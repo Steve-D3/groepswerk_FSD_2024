@@ -25,10 +25,10 @@ body {
       background-color: #010081;
       align-content: center;
       text-align: center;
-      padding: 2rem;
+      /* padding: 2rem; */
 
       h2 {
-        padding: 6rem;
+        padding: 5rem;
         font-size: 32px;
         color: #fdffff;
 
@@ -36,8 +36,9 @@ body {
 
       ul {
         display: flex;
-        justify-content: space-around;
-
+        justify-content: space-evenly;
+        max-width: 80%;
+        margin: auto;
         li {
           background-color: #c3c3c3;
           padding: 3rem 0;
@@ -63,6 +64,8 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(400px, 1.5fr));
         gap: 1.5rem;
 
+        max-width: 80%;
+        margin: auto;
         li {
           text-align: center;
           align-items: center;

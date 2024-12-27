@@ -1,4 +1,5 @@
 <?php
+include_once "includes/css_js.inc.php";
 include_once "includes/db.inc.php";
 $id = @$_GET["id"];
 $data = getData();
@@ -10,6 +11,10 @@ foreach ($data as $elem) {
     }
 }
 
+$extraPics = getExtraImages($id);
+
+
+
 ?>
 
 
@@ -20,6 +25,7 @@ foreach ($data as $elem) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dish description</title>
+    <script type="module" src="./dist/<?= $jsPath ?>"></script>
     <style>
         body {
             height: 100vh;
@@ -64,14 +70,32 @@ foreach ($data as $elem) {
 
                     position: relative;
 
-                    img {
+                    .img_slider {
+                        display: flex;
                         width: 350px;
                         height: 350px;
                         box-shadow: 4px 4px 0px #000000, -4px -4px 0px #ffffff;
+                        transition: transform 0.5s ease-in-out;
+
+                        overflow: hidden;
+
+                        .img_holder {
+                            display: flex;
+                            transition: transform 0.5s ease-in-out;
+
+                            img {
+                                height: 100%;
+                                width: 100%;
+                                object-fit: fill;
+
+
+                            }
+                        }
                     }
 
                     a {
                         position: absolute;
+                        cursor: pointer;
 
                         img {
                             width: 40px;
@@ -153,12 +177,19 @@ foreach ($data as $elem) {
 
     <main>
         <div class="image_div">
-            <img src="<?php echo $dish["img"]; ?>" alt="">
-            <a href="">
-                <img src="images/next.svg" alt="">
+            <div class="img_slider">
+                <div class="img_holder">
+                    <!-- <img src="<?php echo $dish["img"]; ?>" alt=""> -->
+                    <?php foreach ($extraPics as $pic): ?>
+                        <img src="<?= $pic; ?>" alt="">
+                    <? endforeach; ?>
+                </div>
+            </div>
+            <a id="next_btn">
+                <img src="images/next.svg" alt="Next">
             </a>
-            <a href="">
-                <img src="images/prev.svg" alt="">
+            <a id="prev_btn">
+                <img src="images/prev.svg" alt="Previous">
             </a>
         </div>
 
