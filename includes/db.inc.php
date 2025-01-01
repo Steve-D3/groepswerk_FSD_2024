@@ -30,7 +30,9 @@ function getData($continentId = null): array
     $sql = "SELECT 
         dishes.id AS id,
         dishes.name AS dish, 
-        dishes.description AS description,  
+        dishes.description AS description, 
+        dishes.short_description AS s_description,
+        dishes.long_description AS l_description, 
         dishes.img_url AS img,
         country.name AS Country,
         continent.name AS Continent 

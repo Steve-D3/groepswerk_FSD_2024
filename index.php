@@ -46,7 +46,7 @@ echo "</pre>";
                     <li>
                         <a href="detail.php?id=<?= $elem["id"]; ?>"><?= $elem["dish"]; ?></a>
                         <img src=<?= $elem["img"]; ?> alt="">
-                        <p><?= $elem["description"] ?></p>
+                        <p><?= $elem["s_description"] ?></p>
                     </li>
                 <? endforeach; ?>
             </ul>
