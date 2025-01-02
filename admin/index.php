@@ -18,6 +18,9 @@ include_once "../includes/db.inc.php";
 <body>
     <?= "php works on admin page" ?>
     <p class="icon-location2"></p>
+    <header>
+    <h1> Admin Pannel hola</h1>
+    </header>
     <img src="images/sample.jpg" alt="">
 </body>
 

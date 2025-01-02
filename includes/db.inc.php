@@ -1,6 +1,9 @@
 <?php
 
-$env = parse_ini_file('.env');
+// $env = parse_ini_file('.env');
+
+$env = parse_ini_file(__DIR__ . '/../.env');
+
 $menuOptions = getMenuOptions();
 // CONNECTIE MAKEN MET DE DB
 function connectToDB()
@@ -60,7 +63,6 @@ function getData($continentId = null): array
 
 function getMenuOptions() {
     $sql = "SELECT * FROM continent";
-
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
