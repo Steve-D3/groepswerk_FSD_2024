@@ -15,9 +15,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($name && $country && $continent && $image) {
             move_uploaded_file($_FILES['image']['tmp_name'], "../images/" . $image);
             $db = connectToDB();
-            $stmt = $db->prepare("INSERT INTO dishes (name, img_url) VALUES (:name, :img_url)");
+            $stmt = $db->prepare("INSERT INTO dishes (name, img_url, short_description, long_description) VALUES (:name, :img_url, :short_description, :long_description)");
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':img_url', $image);
+
+             // Set default values for description fields if they don't exist
+             $short_description = ""; // or a default message like "No description available"
+             $long_description = "";
+             $stmt->bindParam(':short_description', $short_description);
+             $stmt->bindParam(':long_description', $long_description);
+            
             $stmt->execute();
 
             $dishId = $db->lastInsertId();
@@ -55,13 +62,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($id) {
             $db = connectToDB();
-            $stmt = $db->prepare("DELETE FROM dishes WHERE id = :id");
-            $stmt->bindParam(':id', $id);
-            $stmt->execute();
+            $db->beginTransaction();
+            try {
+                // entires eerst verwijderen uit country_has_dishes
+                $stmt = $db->prepare("DELETE FROM country_has_dishes WHERE dishes_id = :dish_id");
+                $stmt->bindParam(':dish_id', $id);
+                $stmt->execute();
 
-            $stmt = $db->prepare("DELETE FROM country_has_dishes WHERE dishes_id = :dish_id");
-            $stmt->bindParam(':dish_id', $id);
-            $stmt->execute();
+                // Delete dish
+                $stmt = $db->prepare("DELETE FROM dishes WHERE id = :id");
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+
+                $db->commit();
+            } catch (PDOException $e) {
+                $db->rollBack();
+                echo "Error: " . $e->getMessage();
+            }
         }
     }
 
