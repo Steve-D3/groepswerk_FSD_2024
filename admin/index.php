@@ -105,18 +105,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     <p class="icon-location2"></p>
     <header>
-        <h1> Admin Pannel holaa</h1>
+        <h1> Admin Pannel</h1>
     </header>
 
     <section>
-        <h2>Manage Dishes</h2>
+        <h2>Dishes on the database</h2>
         <table border="1">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Photo</th>
-                    <th>Info1</th>
-                    <th>Info2</th>
+                    <th>Country</th>
+                    <th>Continent</th>
+                    <th>S info</th>
+                    <th>L info</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -124,9 +126,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <?php foreach ($dishes as $dish): ?>
                 <tr>
                     <td><?= htmlspecialchars($dish['dish']) ?></td>
-                    <td><img src="../images/<?= htmlspecialchars($dish['img']) ?>" alt="<?= htmlspecialchars($dish['dish']) ?>" width="50"></td>
+                    <td><img src="<?= htmlspecialchars($dish['img'])?>" alt="<?= htmlspecialchars($dish['dish']) ?>" width="50px" height="50px"></td>
                     <td><?= htmlspecialchars($dish['Country']) ?></td>
                     <td><?= htmlspecialchars($dish['Continent']) ?></td>
+                    <td><?= htmlspecialchars($dish['S_description']) ?></td>
+                    <td><?= htmlspecialchars($dish['L_description']) ?></td>
+
                     <td>
                         <!-- Edit Button -->
                         <form method="POST" style="display:inline;">
