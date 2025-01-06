@@ -9,7 +9,25 @@
   box-sizing: border-box;
 }
 body {
-  /* background-color: red; */
+  min-height: 100vh;
+  background-color: #008080;
+
+  main {
+    text-align: center;
+    font-family: "MS Sans Serif", Arial, sans-serif;
+
+    section {
+      &:first-of-type {
+        table {
+          background-color: #c3c3c3;
+        }
+      }
+
+      &:last-of-type {
+        background-color: #c3c3c3;
+      }
+    }
+  }
 }
 body * {
   line-height: calc(2px + 2ex + 2px);

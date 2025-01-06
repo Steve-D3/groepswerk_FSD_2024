@@ -2,7 +2,7 @@
 $_SERVER["admin"] = true;
 include_once "../includes/css_js.inc.php";
 include_once "../includes/db.inc.php";
-$dishes = getData(); 
+$dishes = getData();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //DISH toevogen
@@ -19,12 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':img_url', $image);
 
-             // Set default values for description fields if they don't exist
-             $short_description = ""; // or a default message like "No description available"
-             $long_description = "";
-             $stmt->bindParam(':short_description', $short_description);
-             $stmt->bindParam(':long_description', $long_description);
-            
+            // Set default values for description fields if they don't exist
+            $short_description = ""; // or a default message like "No description available"
+            $long_description = "";
+            $stmt->bindParam(':short_description', $short_description);
+            $stmt->bindParam(':long_description', $long_description);
+
             $stmt->execute();
 
             $dishId = $db->lastInsertId();
@@ -102,86 +102,87 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
-    
-    <p class="icon-location2"></p>
-    <header>
-        <h1> Admin Pannel</h1>
-    </header>
+    <main>
+        <p class="icon-location2"></p>
+        <header>
+            <h1> Admin Pannel</h1>
+        </header>
 
-    <section>
-        <h2>Dishes on the database</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Photo</th>
-                    <th>Country</th>
-                    <th>Continent</th>
-                    <th>S info</th>
-                    <th>L info</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($dishes as $dish): ?>
-                <tr>
-                    <td><?= htmlspecialchars($dish['dish']) ?></td>
-                    <td><img src="<?= htmlspecialchars($dish['img'])?>" alt="<?= htmlspecialchars($dish['dish']) ?>" width="50px" height="50px"></td>
-                    <td><?= htmlspecialchars($dish['Country']) ?></td>
-                    <td><?= htmlspecialchars($dish['Continent']) ?></td>
-                    <td><?= htmlspecialchars($dish['S_description']) ?></td>
-                    <td><?= htmlspecialchars($dish['L_description']) ?></td>
+        <section>
+            <h2>Dishes on the database</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Photo</th>
+                        <th>Country</th>
+                        <th>Continent</th>
+                        <th>S info</th>
+                        <th>L info</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($dishes as $dish): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($dish['dish']) ?></td>
+                            <td><img src="<?= htmlspecialchars($dish['img']) ?>" alt="<?= htmlspecialchars($dish['dish']) ?>" width="50px" height="50px"></td>
+                            <td><?= htmlspecialchars($dish['Country']) ?></td>
+                            <td><?= htmlspecialchars($dish['Continent']) ?></td>
+                            <td><?= htmlspecialchars($dish['S_description']) ?></td>
+                            <td><?= htmlspecialchars($dish['L_description']) ?></td>
 
-                    <td>
-                        <!-- Edit Button -->
-                        <form method="POST" style="display:inline;">
-                            <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
-                            <input type="hidden" name="dishName" value="<?= htmlspecialchars($dish['dish']) ?>">
-                            <input type="hidden" name="country" value="<?= htmlspecialchars($dish['Country']) ?>">
-                            <input type="hidden" name="continent" value="<?= htmlspecialchars($dish['Continent']) ?>">
-                            <button type="submit" name="editDish">Edit</button>
-                        </form>
+                            <td>
+                                <!-- Edit Button -->
+                                <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
+                                    <input type="hidden" name="dishName" value="<?= htmlspecialchars($dish['dish']) ?>">
+                                    <input type="hidden" name="country" value="<?= htmlspecialchars($dish['Country']) ?>">
+                                    <input type="hidden" name="continent" value="<?= htmlspecialchars($dish['Continent']) ?>">
+                                    <button type="submit" name="editDish">Edit</button>
+                                </form>
 
-                        
-                        <form method="POST" style="display:inline;">
-                            <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
-                            <button type="submit" name="deleteDish" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    </section>
 
-    
-    <section>
-        <h2>Add New Dish</h2>
-        <form method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="addDish" value="1">
+                                <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
+                                    <button type="submit" name="deleteDish" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </section>
 
-            <label for="dishName">Name:</label>
-            <input type="text" id="dishName" name="dishName" required>
 
-            <label for="continent">Continent:</label>
-            <select id="continent" name="continent" required>
-                <?php
-                $continents = getMenuOptions(); // continenten ophalen
-                foreach ($continents as $continent) {
-                    echo "<option value=\"{$continent['id']}\">{$continent['name']}</option>";
-                }
-                ?>
-            </select>
+        <section>
+            <h2>Add New Dish</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="addDish" value="1">
 
-            <label for="country">Country:</label>
-            <input type="text" id="country" name="country" required> 
+                <label for="dishName">Name:</label>
+                <input type="text" id="dishName" name="dishName" required>
 
-            <label for="image">Image:</label>
-            <input type="file" id="image" name="image" required>
+                <label for="continent">Continent:</label>
+                <select id="continent" name="continent" required>
+                    <?php
+                    $continents = getMenuOptions(); // continenten ophalen
+                    foreach ($continents as $continent) {
+                        echo "<option value=\"{$continent['id']}\">{$continent['name']}</option>";
+                    }
+                    ?>
+                </select>
 
-            <button type="submit">Add Dish</button>
-        </form>
-    </section>
-    
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" required>
+
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" required>
+
+                <button type="submit">Add Dish</button>
+            </form>
+        </section>
+    </main>
 </body>
+
 </html>
