@@ -11,20 +11,109 @@
 body {
   min-height: 100vh;
   background-color: #008080;
+  font-family: "Tahoma", "Verdana", sans-serif;
 
   main {
     text-align: center;
-    font-family: "MS Sans Serif", Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+
+    position: relative;
+
+    p{
+      position: absolute;
+      top: 0;
+      right: 15%;
+    }
 
     section {
+      max-width: 75%;
       &:first-of-type {
         table {
           background-color: #c3c3c3;
+          th,
+          td {
+            padding: 10px;
+            border: 1px solid #808080;
+            text-align: left;
+          }
+
+          th {
+            background-color: #000080;
+            color: white;
+            font-weight: bold;
+          }
+
+          td {
+            background-color: #f0f0f0; 
+          }
+
+          tr:hover td {
+            background-color: #c0c0c0;
+          }
         }
       }
 
       &:last-of-type {
-        background-color: #c3c3c3;
+        background-color: #d4d0c8; 
+        border: 2px solid #808080; 
+        width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        box-shadow: 2px 2px 0 #ffffff inset, -2px -2px 0 #808080 inset;
+        
+        h1 {
+          text-align: center;
+          margin-bottom: 20px;
+          font-size: 18px;
+          color: #000080;
+        }
+
+        label {
+          display: block;
+          margin-bottom: 8px;
+          font-weight: bold;
+        }
+
+        input[type="text"], select, input[type="file"] {
+          width: calc(100% - 12px);
+          padding: 6px;
+          margin-bottom: 12px;
+          border: 1px solid #808080;
+          background-color: #F0F0F0;
+          color: black;
+          box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #808080 inset;
+          font-family: inherit;
+        }
+
+        input:focus, select:focus {
+          outline: none;
+          border: 1px solid #000080; 
+        }
+
+        button {
+          display: inline-block;
+          padding: 8px 12px;
+          margin-top: 10px;
+          background-color: #D4D0C8;
+          border: 1px solid #808080;
+          box-shadow: 2px 2px 0 #ffffff inset, -2px -2px 0 #808080 inset;
+          font-family: inherit;
+          cursor: pointer;
+        }
+      
+        button:hover {
+          background-color: #C0C0C0;
+        }
+      
+        button:active {
+          box-shadow: -1px -1px 0 #ffffff inset, 1px 1px 0 #808080 inset; /* Inverted effect */
+        }
+      
       }
     }
   }
@@ -33,3 +122,46 @@ body * {
   line-height: calc(2px + 2ex + 2px);
   /* font-size: 5rem; */
 }
+
+@media (max-width: 768px) {
+  table {
+    display: block;
+    width: 100%; 
+    overflow-x: auto;
+    white-space: nowrap;
+    border-spacing: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between; /* Align cell labels and values */
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd; /* Separate each cell visually */
+  }
+
+  td:last-child {
+    border-bottom: none; /* Remove border for the last cell in the row */
+  }
+
+  td::before {
+    content: attr(data-label); /* Use data-label to show column names */
+    font-weight: bold;
+    color: #555;
+    margin-right: 10px;
+    text-transform: capitalize; /* Make labels look more uniform */
+  }
+}
+

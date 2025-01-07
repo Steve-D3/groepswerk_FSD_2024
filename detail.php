@@ -198,7 +198,7 @@ $extraPics = getExtraImages($id);
         </div>
         <div class="description_div">
             <p>
-                <?= $dish["description"] ?>
+                <?= $dish["L_description"] ?>
             </p>
         </div>
 

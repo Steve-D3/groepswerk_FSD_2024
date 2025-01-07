@@ -11,7 +11,7 @@ $selectedContinent = isset($_GET['continent_id']) ? intval($_GET['continent_id']
 $data = getData($selectedContinent);
 
 echo "<pre>";
-// print_r($data);
+print_r($data[0]);
 echo "</pre>";
 
 ?>
@@ -46,7 +46,7 @@ echo "</pre>";
                     <li>
                         <a href="detail.php?id=<?= $elem["id"]; ?>"><?= $elem["dish"]; ?></a>
                         <img src=<?= $elem["img"]; ?> alt="">
-                        <p><?= $elem["description"] ?></p>
+                        <p><?= $elem["S_description"] ?></p>
                     </li>
                 <? endforeach; ?>
             </ul>
