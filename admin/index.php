@@ -151,7 +151,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN HOMEPAGE</title>
     <link rel="stylesheet" href="../dist/<?= $cssPath ?>" />
-    <script type="module" src="../dist/<?= $jsPath ?>"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/icons.css">
+    <!-- <script type="module" src="../dist/<?= $jsPath ?>"></script> -->
 </head>
 
 <body>
@@ -187,7 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                             <td class="buttons">
                                 <!-- Edit Button -->
-                                <form method="POST" style="display:inline;">
+                                <form method="POST" action= "edit.php" style="display:inline;">
                                     <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
                                     <input type="hidden" name="dishName" value="<?= htmlspecialchars($dish['dish']) ?>">
                                     <input type="hidden" name="country" value="<?= htmlspecialchars($dish['Country']) ?>">
