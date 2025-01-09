@@ -24,7 +24,7 @@ body {
 
     position: relative;
 
-    p{
+    p {
       position: absolute;
       top: 0;
       right: 15%;
@@ -49,7 +49,7 @@ body {
           }
 
           td {
-            background-color: #f0f0f0; 
+            background-color: #f0f0f0;
           }
 
           tr:hover td {
@@ -59,13 +59,13 @@ body {
       }
 
       &:last-of-type {
-        background-color: #d4d0c8; 
-        border: 2px solid #808080; 
+        background-color: #d4d0c8;
+        border: 2px solid #808080;
         width: 500px;
         margin: 20px auto;
         padding: 20px;
         box-shadow: 2px 2px 0 #ffffff inset, -2px -2px 0 #808080 inset;
-        
+
         h1 {
           text-align: center;
           margin-bottom: 20px;
@@ -79,41 +79,77 @@ body {
           font-weight: bold;
         }
 
-        input[type="text"], select, input[type="file"] {
+        input[type="text"],
+        select,
+        input[type="file"] {
           width: calc(100% - 12px);
           padding: 6px;
           margin-bottom: 12px;
           border: 1px solid #808080;
-          background-color: #F0F0F0;
+          background-color: #f0f0f0;
           color: black;
           box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #808080 inset;
           font-family: inherit;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
           outline: none;
-          border: 1px solid #000080; 
+          border: 1px solid #000080;
+        }
+
+        textarea {
+          width: calc(100% - 12px);
         }
 
         button {
           display: inline-block;
           padding: 8px 12px;
           margin-top: 10px;
-          background-color: #D4D0C8;
+          background-color: #d4d0c8;
           border: 1px solid #808080;
           box-shadow: 2px 2px 0 #ffffff inset, -2px -2px 0 #808080 inset;
           font-family: inherit;
           cursor: pointer;
         }
-      
+
         button:hover {
-          background-color: #C0C0C0;
+          background-color: #c0c0c0;
         }
-      
+
         button:active {
           box-shadow: -1px -1px 0 #ffffff inset, 1px 1px 0 #808080 inset; /* Inverted effect */
         }
-      
+      }
+    }
+
+    .admin_button {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #000;
+      background-color: #c0c0c0;
+      border: 2px solid #fff; /* Top/left border */
+      border-bottom-color: #808080; /* Bottom shadow */
+      border-right-color: #808080; /* Right shadow */
+      text-decoration: none;
+      box-shadow: 2px 2px 0 #808080; /* Shadow effect */
+      cursor: pointer;
+      text-align: center;
+
+      &:hover {
+        color: #ff0081;
+      }
+
+      &:active {
+        border: 2px solid #808080; /* Inset border */
+        border-top-color: #fff; /* Top highlight */
+        border-left-color: #fff; /* Left highlight */
+        box-shadow: none; /* Remove shadow */
+        background-color: #a0a0a0; /* Darker background */
       }
     }
   }
@@ -123,10 +159,10 @@ body * {
   /* font-size: 5rem; */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 760px) {
   table {
     display: block;
-    width: 100%; 
+    width: 100%;
     overflow-x: auto;
     white-space: nowrap;
     border-spacing: 0;
@@ -138,7 +174,7 @@ body * {
 
   tbody tr {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     margin-bottom: 15px;
     border: 1px solid #ddd;
     padding: 10px;
@@ -164,4 +200,3 @@ body * {
     text-transform: capitalize; /* Make labels look more uniform */
   }
 }
-

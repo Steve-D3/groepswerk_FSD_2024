@@ -11,7 +11,7 @@ $selectedContinent = isset($_GET['continent_id']) ? intval($_GET['continent_id']
 $data = getData($selectedContinent);
 
 echo "<pre>";
-print_r($data[0]);
+// print_r($data[0]);
 echo "</pre>";
 
 ?>
@@ -30,7 +30,7 @@ echo "</pre>";
 <body>
     <main>
         <section class="section1">
-            <h2>Dishes from the world</h2>
+            <a href="index.php"><h2>Dishes from the world</h2></a>
             <div>
                 <ul>
                     <?php foreach ($menuOptions as $option): ?>
@@ -45,13 +45,20 @@ echo "</pre>";
                 <?php foreach ($data as $elem): ?>
                     <li>
                         <a href="detail.php?id=<?= $elem["id"]; ?>"><?= $elem["dish"]; ?></a>
-                        <img src=<?= $elem["img"]; ?> alt="">
+                        <?php
+                            $imgPath = $elem["img"];
+                            if (strpos($imgPath, "../") === 0){
+                                $imgPath = './'. substr($imgPath, 3);
+                            }
+                        ?>
+                        <img src=<?= $imgPath; ?> alt="">
                         <p><?= $elem["S_description"] ?></p>
                     </li>
                 <? endforeach; ?>
             </ul>
         </section>
-
+        
+        <a href="./admin/index.php" class="admin_button">Admin</a>
     </main>
 
 </body>

@@ -170,6 +170,106 @@ $extraPics = getExtraImages($id);
 
             }
         }
+
+        @media (max-width: 749px) {
+            body main {
+                width: calc(95% - 1rem);
+                /* Use most of the screen width with some padding */
+                padding: 1rem;
+            }
+
+            body main .image_div {
+                width: 100%;
+                /* Take full width of the container */
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                /* Stack items vertically */
+                justify-content: center;
+                align-items: center;
+            }
+
+            body main .image_div .img_slider {
+                width: 100%;
+                /* Full width for the image slider */
+                height: auto;
+                /* Maintain aspect ratio */
+                max-width: 90%;
+                /* Add a slight padding for aesthetics */
+                max-height: 300px;
+                /* Limit height for mobile screens */
+            }
+
+            body main .image_div img {
+                width: 100%;
+                /* Ensure images fill the slider */
+                height: auto;
+                /* Maintain proportions */
+                object-fit: cover;
+                /* Cover the available space proportionally */
+            }
+
+            body main .image_div a {
+                position: relative;
+                /* Inline with the content */
+                margin: 0.5rem;
+                /* Add spacing around buttons */
+            }
+
+            body main .titel_div,
+            body main .description_div {
+                width: 100%;
+                /* Full width for text sections */
+                text-align: center;
+                /* Center-align text for readability */
+            }
+
+            body main .titel_div p {
+                font-size: 18px;
+                /* Slightly smaller text for mobile */
+            }
+
+            body main .description_div p {
+                font-size: 14px;
+                /* Adjust font size for readability on small screens */
+            }
+
+            body main .close_w a img {
+                width: 20px;
+                /* Smaller close button */
+                height: 20px;
+
+            }
+        }
+
+
+        @media (min-width: 750px) {
+            body main {
+                width: calc(60% - 2rem);
+            }
+
+            body main .image_div .img_slider {
+                width: 50%;
+                height: 50%;
+            }
+        }
+
+        @media (min-width: 1000px) {
+            body main {
+                width: calc(75% - 2rem);
+            }
+
+            body main .image_div .img_slider {
+                width: 60%;
+                height: 60%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            body main {
+                width: calc(60% - 2rem);
+            }
+        }
     </style>
 </head>
 
