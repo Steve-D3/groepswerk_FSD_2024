@@ -21,17 +21,21 @@ body {
     font-family: "MS Sans Serif", Arial, sans-serif;
 
     .section1 {
-      
       background-color: #010081;
       align-content: center;
       text-align: center;
       /* padding: 2rem; */
-
-      h2 {
-        padding: 5rem;
-        font-size: 32px;
-        color: #fdffff;
-
+      a {
+        display: inline-block;
+        text-decoration: none;
+        h2 {
+          padding: 5rem;
+          font-size: 32px;
+          color: #fdffff;
+        }
+        &:hover h2 {
+          color: #ff0081;
+        }
       }
 
       ul {
@@ -48,7 +52,7 @@ body {
           a {
             color: black;
             text-decoration: none;
-            &:hover{
+            &:hover {
               color: #ff0081;
             }
           }
@@ -77,10 +81,13 @@ body {
           flex-direction: column;
           justify-content: center;
           gap: 10px;
-          margin: auto auto;
-
+          margin: auto;
+    
           background-color: #c3c3c3;
-          box-shadow: inset -2px -2px 0px #808080, inset 2px 2px 0px #000000;
+          border: 2px solid #fff; /* Initial top/left highlight */
+          border-bottom-color: #808080; /* Bottom shadow */
+          border-right-color: #808080; /* Right shadow */
+          box-shadow: 2px 2px 0px #808080; /* Outer shadow effect */
 
           p {
             padding: 0 6rem;
@@ -91,7 +98,7 @@ body {
 
             text-decoration: none;
             color: black;
-            &:hover{
+            &:hover {
               color: #ff0081;
             }
           }
@@ -99,7 +106,45 @@ body {
             height: 350px;
             width: 350px;
           }
+
+          &:active {
+            border: 2px solid #808080; /* Inset effect */
+            border-top-color: #fff; /* Top highlight */
+            border-left-color: #fff; /* Left highlight */
+            box-shadow: none; /* Remove outer shadow */
+            background-color: #a0a0a0; /* Darker background for pressed state */
+          }
         }
+      }
+    }
+
+    .admin_button {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #000;
+      background-color: #c0c0c0;
+      border: 2px solid #fff; /* Top/left border */
+      border-bottom-color: #808080; /* Bottom shadow */
+      border-right-color: #808080; /* Right shadow */
+      text-decoration: none;
+      box-shadow: 2px 2px 0 #808080; /* Shadow effect */
+      cursor: pointer;
+      text-align: center;
+
+      &:hover {
+        color: #ff0081;
+      }
+
+      &:active {
+        border: 2px solid #808080; /* Inset border */
+        border-top-color: #fff; /* Top highlight */
+        border-left-color: #fff; /* Left highlight */
+        box-shadow: none; /* Remove shadow */
+        background-color: #a0a0a0; /* Darker background */
       }
     }
   }

@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
     <main>
-        <p class="icon-location2"></p>
+        <!-- <p class="icon-location2"></p> -->
         <header>
             <h1> Admin Pannel</h1>
         </header>
@@ -242,6 +242,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <button type="submit">Add Dish</button>
             </form>
         </section>
+
+        <a href="../index.php" class="admin_button">Back</a>
     </main>
 </body>
 
