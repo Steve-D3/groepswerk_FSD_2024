@@ -1,0 +1,16 @@
+@import url("./reset.css");
+@import url("./icons.css");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
+
+:root{
+    font-size: 62.%;
+    --soft-orange: hsl(35, 77%, 62%);
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: blue ;
+}
