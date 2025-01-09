@@ -1,13 +1,13 @@
 <?php
-// var_dump($_GET, $_POST);
-// exit;
+
 include_once "../includes/db.inc.php";
 
-// var_dump(getData());
-// exit;
 
 //Id van dish ophalen
 $dishId = $_POST['dishId'] ?? null;
+
+echo "<p>Received dishId: [" . htmlspecialchars($dishId) . "] (type: " . gettype($dishId) . ")</p>";
+
 
 
 if (!$dishId){
@@ -17,9 +17,16 @@ if (!$dishId){
 
 //Dish ID van index.php mathcen met de ID van DB
 $dishes = getData();
-$dish = array_filter($dishes, function($d) use ($dishId) { 
-    return (int)$d['id'] === (int)$dishId;  
-})[0] ?? null;
+
+
+foreach ($dishes as $dishItem) {
+    if ((int)$dishItem['id'] === (int)$dishId) {
+        $dish = $dishItem;
+        break;
+    }
+}
+
+
 
 if(!$dish){
     echo "dish niet gevonden";
@@ -40,6 +47,9 @@ if(!$dish){
     <h1>Edit Dish</h1>
     <form action="edit.php" method="post">
         <label for="name">Name</label>
+
+        <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
+
         <input type="text" name="name" id="name" value="<?= htmlspecialchars($dish['dish']) ?>">
         <label for="short_description">Short Description</label>
         <input type="text" name="short_description" id="short_description" value="<?= htmlspecialchars($dish['S_description']) ?>">
