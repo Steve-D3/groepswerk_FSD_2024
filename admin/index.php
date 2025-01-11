@@ -151,10 +151,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN HOMEPAGE</title>
     <link rel="stylesheet" href="../dist/<?= $cssPath ?>" />
-    <link rel="stylesheet" href="./css/style.css">
+    <!-- <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/icons.css">
-    <!-- <script type="module" src="../dist/<?= $jsPath ?>"></script> -->
+    <link rel="stylesheet" href="./css/icons.css"> -->
+    <script type="module" src="../dist/<?= $jsPath ?>"></script>
 </head>
 
 <body>
@@ -173,8 +173,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <th>Photo</th>
                         <th>Country</th>
                         <th>Continent</th>
-                        <th>S info</th>
-                        <th>L info</th>
+                        <th>Short Description</th>
+                        <th>Long Description</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -198,11 +198,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <button type="submit" name="editDish">Edit</button>
                                 </form>
 
+                                <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
+                                    <button type="submit" name="extraImages">Images</button>
+                                </form>
 
                                 <form method="POST" style="display:inline;">
                                     <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
                                     <button type="submit" name="deleteDish" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
+
+
                             </td>
                         </tr>
                     <?php endforeach; ?>
