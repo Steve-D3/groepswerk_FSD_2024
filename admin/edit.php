@@ -77,143 +77,177 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'], $_POST['short
   <title>Edit Dish</title>
 
   <style>
-
-    :root {
-      font-size: 62.5%;
-      --soft-orange: hsl(35, 77%, 62%);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    /* General Reset */
     body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #008080;
+
       margin: 0;
       padding: 0;
-      font-family: "MS Sans Serif", Arial, sans-serif;
-      background-color: #008080;
-      color: #000;
 
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-
-      h1 {
-        text-align: center;
-        font-size: 4rem;
-        margin: 20px 0;
-        color: #000;
-        text-shadow: 1px 1px #fff;
-
-      }
-
-      form {
-        width: 40%;
-        margin: 20px auto;
-        padding: 15px;
-        background-color: #e0e0e0;
+      section {
+        width: 80%;
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background-color: #d0d0d0;
         border: 2px solid #808080;
-        border-radius: 4px;
-        box-shadow: inset -2px -2px #fff, inset 2px 2px #808080;
-        font-size: 2rem;
+        box-shadow: inset -2px -2px 0px #fff, inset 2px 2px 0px #000;
 
-        label {
-          display: block;
-          margin-bottom: 8px;
-          font-weight: bold;
-          color: #000;
-        }
+        position: relative;
 
-        input[type="text"],
-        select {
-          width: 100%;
-          padding: 5px;
-          margin-bottom: 12px;
-          border: 2px solid #808080;
-          background-color: #fff;
-          box-shadow: inset -1px -1px #fff, inset 1px 1px #808080;
+        h1 {
           font-size: 1.5rem;
-          color: #000;
-          outline: none;
-        }
-
-        input[type="text"]:focus,
-        select:focus {
-          border-color: #000080;
-          box-shadow: inset -1px -1px #000, inset 1px 1px #808080;
-        }
-
-        button {
-          display: block;
-          width: 100%;
-          padding: 8px;
-          background-color: #c0c0c0;
-          border: 2px solid #808080;
-          box-shadow: -2px -2px #fff, 2px 2px #808080;
-          color: #000;
-          font-size: 1.5rem;
-          font-weight: bold;
           text-align: center;
-          cursor: pointer;
-          outline: none;
-          margin-top: 10px;
-          transition: background-color 0.2s ease;
+          margin-bottom: 1rem;
+          color: #000;
+        }
 
-          &:hover {
-            background-color: #a0a0a0;
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+
+          label {
+            font-size: 0.9rem;
+            color: #000;
           }
 
-          &:active {
-            box-shadow: inset 2px 2px #808080, inset -2px -2px #fff;
+          input[type="text"],
+          select {
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            color: #000;
+            background-color: #fff;
+            border: 2px solid #808080;
+            box-shadow: inset -1px -1px 0px #fff, inset 1px 1px 0px #000;
+            outline: none;
+
+            &:focus {
+              border-color: #000;
+            }
           }
+
+          select {
+            height: 2rem;
+          }
+
+          button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            color: #000;
+            background-color: #c3c3c3;
+            border: 2px solid #808080;
+            box-shadow: inset -1px -1px 0px #fff, inset 1px 1px 0px #000;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #d0d0d0;
+            }
+
+            &:active {
+              border: 2px solid #000;
+              border-top-color: #808080;
+              border-left-color: #808080;
+              background-color: #a0a0a0;
+              box-shadow: none;
+            }
+          }
+        }
+
+        .close_w {
+          position: absolute;
+          top: 0;
+          right: 0;
+
+          img {
+            width: 25px;
+            height: 25px;
+          }
+
         }
       }
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      form {
-        width: 90%;
-      }
 
-      form button {
-        padding: 10px;
+    @media (max-width: 480px) {
+      section {
+        width: 95%;
+        /* Take up more of the screen */
+        padding: 0.8rem;
+        /* Less padding */
+
+        h1 {
+          font-size: 1.1rem;
+          /* Adjusted title font */
+        }
+
+        form {
+          label {
+            font-size: 0.8rem;
+            /* Smaller font for labels */
+          }
+
+          input[type="text"],
+          select {
+            font-size: 0.8rem;
+            /* Smaller inputs */
+            padding: 0.4rem;
+          }
+
+          button {
+            font-size: 0.8rem;
+            /* Smaller button font */
+            padding: 0.4rem 0.8rem;
+          }
+        }
+
+        .close_w {
+          top: 5px;
+          right: 5px;
+
+          img {
+            width: 18px;
+            height: 18px;
+          }
+        }
       }
     }
   </style>
 </head>
 
 <body>
-  <h1>Edit Dish</h1>
-  <form action="edit.php" method="post">
-    <label for="name">Name</label>
+  <section>
 
-    <input type="hidden" name="dishId" value="<?= ($dish['id']) ?>">
+    <h1>Edit Dish</h1>
+    <form action="edit.php" method="post">
+      <label for="name">Name</label>
 
-    <input type="text" name="name" id="name" value="<?= ($dish['dish']) ?>">
-    <label for="short_description">Short Description</label>
-    <input type="text" name="short_description" id="short_description" value="<?= ($dish['S_description']) ?>">
-    <label for="long_description">Long Description</label>
-    <input type="text" name="long_description" id="long_description" value="<?= ($dish['L_description']) ?>">
-    <label for="img_url">Image URL</label>
-    <input type="text" name="img_url" id="img_url" value="<?= ($dish['img']) ?>">
-    <label for="country">Country</label>
-    <input type="text" name="country" id="country" value="<?= ($dish['Country']) ?>">
-    <label for="continent">Continent</label>
-    <select name="continent" id="continent">
-      <?php
-      $continents = getMenuOptions();
-      foreach ($continents as $continent) {
-        echo "<option value=\"{$continent['id']}\">{$continent['name']}</option>";
-      }
-      ?>
-    </select>
-    <button type="submit">Save</button>
-  </form>
+      <input type="hidden" name="dishId" value="<?= ($dish['id']) ?>">
+
+      <input type="text" name="name" id="name" value="<?= ($dish['dish']) ?>">
+      <label for="short_description">Short Description</label>
+      <input type="text" name="short_description" id="short_description" value="<?= ($dish['S_description']) ?>">
+      <label for="long_description">Long Description</label>
+      <input type="text" name="long_description" id="long_description" value="<?= ($dish['L_description']) ?>">
+      <label for="img_url">Image URL</label>
+      <input type="text" name="img_url" id="img_url" value="<?= ($dish['img']) ?>">
+      <label for="country">Country</label>
+      <input type="text" name="country" id="country" value="<?= ($dish['Country']) ?>">
+      <label for="continent">Continent</label>
+      <select name="continent" id="continent">
+        <?php
+        $continents = getMenuOptions();
+        foreach ($continents as $continent) {
+          echo "<option value=\"{$continent['id']}\">{$continent['name']}</option>";
+        }
+        ?>
+      </select>
+      <button type="submit">Save</button>
+    </form>
+    <div class="close_w">
+      <a href="index.php"><img src="../images/close.svg" alt="close_window_icon"></a>
+    </div>
+  </section>
 </body>
 
 </html>

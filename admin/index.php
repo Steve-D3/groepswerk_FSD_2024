@@ -150,10 +150,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN HOMEPAGE</title>
-    <link rel="stylesheet" href="../dist/<?= $cssPath ?>" />
-    <!-- <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/icons.css"> -->
+    <!-- <link rel="stylesheet" href="../dist/<?= $cssPath ?>" /> -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- <link rel="stylesheet" href="./css/reset.css"> -->
+    <!-- <link rel="stylesheet" href="./css/icons.css"> -->
     <script type="module" src="../dist/<?= $jsPath ?>"></script>
 </head>
 
@@ -198,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <button type="submit" name="editDish">Edit</button>
                                 </form>
 
-                                <form method="POST" style="display:inline;">
+                                <form method="POST" action="extraImages.php" style="display:inline;">
                                     <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
                                     <button type="submit" name="extraImages">Images</button>
                                 </form>
