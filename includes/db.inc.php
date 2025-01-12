@@ -1,11 +1,10 @@
 <?php
 
-// $env = parse_ini_file('.env');
-
 $env = parse_ini_file(__DIR__ . '/../.env');
+$conect = connectToDB();
 
 $menuOptions = getMenuOptions();
-// CONNECTIE MAKEN MET DE DB
+
 function connectToDB()
 {
     global $env;

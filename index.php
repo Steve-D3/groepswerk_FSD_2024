@@ -58,7 +58,7 @@ echo "</pre>";
             </ul>
         </section>
         
-        <a href="./admin/index.php" class="admin_button">Admin</a>
+        <a href="./admin/login.php" class="admin_button">Admin</a>
     </main>
 
 </body>

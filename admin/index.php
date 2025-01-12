@@ -1,12 +1,9 @@
 <?php
+session_start();
 $_SERVER["admin"] = true;
 include_once "../includes/css_js.inc.php";
 include_once "../includes/db.inc.php";
 $dishes = getData();
-
-echo "<pre>";
-print_r($_POST["country"]);
-echo "</pre>";
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -150,10 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN HOMEPAGE</title>
-    <!-- <link rel="stylesheet" href="../dist/<?= $cssPath ?>" /> -->
     <link rel="stylesheet" href="./css/style.css">
-    <!-- <link rel="stylesheet" href="./css/reset.css"> -->
-    <!-- <link rel="stylesheet" href="./css/icons.css"> -->
     <script type="module" src="../dist/<?= $jsPath ?>"></script>
 </head>
 
@@ -185,12 +179,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <td><img src="<?= htmlspecialchars($dish['img']) ?>" alt="<?= htmlspecialchars($dish['dish']) ?>" width="75px" height="75px"></td>
                             <td><?= htmlspecialchars($dish['Country']) ?></td>
                             <td><?= htmlspecialchars($dish['Continent']) ?></td>
-                            <td><?= htmlspecialchars($dish['S_description']) ?></td>
-                            <td><?= htmlspecialchars($dish['L_description']) ?></td>
-
+                            <td>
+                                <div><?= htmlspecialchars($dish['S_description']) ?></div>
+                            </td>
+                            <td>
+                                <div><?= htmlspecialchars($dish['L_description']) ?></div>
+                            </td>
                             <td class="buttons">
                                 <!-- Edit Button -->
-                                <form method="POST" action= "edit.php" style="display:inline;">
+                                <form method="POST" action="edit.php" style="display:inline;">
                                     <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
                                     <input type="hidden" name="dishName" value="<?= htmlspecialchars($dish['dish']) ?>">
                                     <input type="hidden" name="country" value="<?= htmlspecialchars($dish['Country']) ?>">
@@ -207,8 +204,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <input type="hidden" name="dishId" value="<?= htmlspecialchars($dish['id']) ?>">
                                     <button type="submit" name="deleteDish" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
-
-
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -252,7 +247,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </form>
         </section>
 
-        <a href="../index.php" class="admin_button">Back</a>
+        <a href="logout.php" class="admin_button">Back</a>
     </main>
 </body>
 

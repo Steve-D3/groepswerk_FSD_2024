@@ -108,7 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'], $_POST['short
           gap: 1rem;
 
           label {
-            font-size: 0.9rem;
+            font-size: 1.2rem;
+            font-weight: 700;
             color: #000;
           }
 
@@ -128,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'], $_POST['short
           }
 
           select {
-            height: 2rem;
+            height: 3rem;
           }
 
           button {

@@ -1,0 +1,99 @@
+<?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+session_start();
+require "../includes/db.inc.php";
+$error = "";
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Fetch the user from the database
+    $stmt = connectToDB()->prepare("SELECT * FROM users WHERE username = :username");
+    $stmt->bindParam(':username', $username); // Bind the username parameter
+    $stmt->execute(); // Execute the query
+    $user = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the user data
+
+    // Verify password (plain-text comparison)
+    if ($user && $password === $user['password_hash']) {
+        $_SESSION['logged_in'] = true;
+        header('Location: index.php');
+        exit;
+    } else {
+        $error = 'Invalid username or password.';
+    }
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #008080;
+            font-family: 'Tahoma', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background: #d4d0c8;
+            border: 2px solid #808080;
+            padding: 20px;
+            box-shadow: inset -2px -2px 0 #ffffff, inset 2px 2px 0 #000000;
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 25%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #808080;
+            background: #f0f0f0;
+            box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #c0c0c0;
+            border: 2px solid #808080;
+            box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #d0d0d0;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="POST">
+        <h1>Login</h1>
+        <?php if ($error): ?>
+            <p class="error"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+</body>
+
+</html>
