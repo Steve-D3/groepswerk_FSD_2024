@@ -10,11 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dishId = $_POST['dishId'] ?? 0;
 
     if (isset($_POST['uploadImages']) && isset($_FILES['images'])) {
-        // Handle image upload
         $images = $_FILES['images'];
         $uploadDir = '../images/';
 
-        // Ensure the upload directory exists
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
@@ -48,12 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($image) {
             $imagePath = "../images/" . $image['img_url'];
 
-            // Delete the image from the file system
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }
 
-            // Delete the image record from the database
             $stmt = $db->prepare("DELETE FROM dish_images WHERE id = :image_id");
             $stmt->bindParam(':image_id', $imageId, PDO::PARAM_INT);
             $stmt->execute();
@@ -61,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Fetch existing images
 $dishId = $_POST['dishId'] ?? $_GET['dishId'] ?? 0;
 $db = connectToDB();
 $stmt = $db->prepare("SELECT id, img_url FROM dish_images WHERE dish_id = :dish_id");
@@ -187,7 +182,6 @@ $images = $stmt->fetchAll();
 
                     p {
                         grid-column: 1 / -1;
-                        /* Center the message if no images exist */
                         text-align: center;
                         font-size: 1rem;
                         color: #000;

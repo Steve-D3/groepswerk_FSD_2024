@@ -110,11 +110,11 @@ body {
           }
 
           &:active {
-            border: 2px solid #808080; /* Inset effect */
-            border-top-color: #fff; /* Top highlight */
-            border-left-color: #fff; /* Left highlight */
-            box-shadow: none; /* Remove outer shadow */
-            background-color: #a0a0a0; /* Darker background for pressed state */
+            border: 2px solid #808080; 
+            border-top-color: #fff; 
+            border-left-color: #fff; 
+            box-shadow: none;
+            background-color: #a0a0a0; 
           }
         }
       }
@@ -129,11 +129,11 @@ body {
       font-size: 14px;
       color: #000;
       background-color: #c0c0c0;
-      border: 2px solid #fff; /* Top/left border */
-      border-bottom-color: #808080; /* Bottom shadow */
-      border-right-color: #808080; /* Right shadow */
+      border: 2px solid #fff; 
+      border-bottom-color: #808080; 
+      border-right-color: #808080; 
       text-decoration: none;
-      box-shadow: 2px 2px 0 #808080; /* Shadow effect */
+      box-shadow: 2px 2px 0 #808080; 
       cursor: pointer;
       text-align: center;
 
@@ -142,11 +142,11 @@ body {
       }
 
       &:active {
-        border: 2px solid #808080; /* Inset border */
-        border-top-color: #fff; /* Top highlight */
-        border-left-color: #fff; /* Left highlight */
-        box-shadow: none; /* Remove shadow */
-        background-color: #a0a0a0; /* Darker background */
+        border: 2px solid #808080; 
+        border-top-color: #fff; 
+        border-left-color: #fff; 
+        box-shadow: none; 
+        background-color: #a0a0a0; 
       }
     }
   }
@@ -161,10 +161,10 @@ body {
         flex-wrap: wrap;
         margin: auto auto;
         max-width: 60%;
-        gap: 1rem; /* Add spacing between columns */
+        gap: 1rem; 
         li {
           padding: 1.5rem;
-          width: auto; /* Ensure items resize naturally */
+          width: auto; 
         }
       }
     }

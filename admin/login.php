@@ -12,13 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Fetch the user from the database
     $stmt = connectToDB()->prepare("SELECT * FROM users WHERE username = :username");
-    $stmt->bindParam(':username', $username); // Bind the username parameter
-    $stmt->execute(); // Execute the query
-    $user = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the user data
+    $stmt->bindParam(':username', $username); 
+    $stmt->execute(); 
+    $user = $stmt->fetch(PDO::FETCH_ASSOC); 
 
-    // Verify password (plain-text comparison)
     if ($user && $password === $user['password_hash']) {
         $_SESSION['logged_in'] = true;
         header('Location: index.php');
