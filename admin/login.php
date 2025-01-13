@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             align-items: center;
             height: 100vh;
             margin: 0;
+            position: relative;
         }
 
         form {
@@ -77,6 +78,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: #d0d0d0;
         }
 
+        .admin_button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #000;
+            background-color: #c0c0c0;
+            border: 2px solid #fff;
+            /* Top/left border */
+            border-bottom-color: #808080;
+            /* Bottom shadow */
+            border-right-color: #808080;
+            /* Right shadow */
+            text-decoration: none;
+            box-shadow: 2px 2px 0 #808080;
+            /* Shadow effect */
+            cursor: pointer;
+            text-align: center;
+
+            &:hover {
+                color: #ff0081;
+            }
+
+            &:active {
+                border: 2px solid #808080;
+                /* Inset border */
+                border-top-color: #fff;
+                /* Top highlight */
+                border-left-color: #fff;
+                /* Left highlight */
+                box-shadow: none;
+                /* Remove shadow */
+                background-color: #a0a0a0;
+                /* Darker background */
+            }
+        }
+
         .error {
             color: red;
             margin-bottom: 10px;
@@ -94,6 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit">Login</button>
     </form>
+    <a href="../index.php" class="admin_button">Back</a>
 </body>
 
 </html>
