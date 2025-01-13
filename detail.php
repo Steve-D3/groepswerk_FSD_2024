@@ -281,10 +281,16 @@ $extraPics = getExtraImages($id);
                 <div class="img_holder">
                     <!-- <img src="<?php echo $dish["img"]; ?>" alt=""> -->
                     <?php foreach ($extraPics as $pic): ?>
+                        <?php
+                        if (strpos($pic, "https") !== 0) {
+                            $pic = './images/' . $pic; // Prepend "./images/" if not starting with "https"
+                        }
+                        ?>
                         <img src="<?= $pic; ?>" alt="">
-                    <? endforeach; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
+
             <a id="next_btn">
                 <img src="images/next.svg" alt="Next">
             </a>
