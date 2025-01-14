@@ -1,6 +1,10 @@
 <?php
 session_start();
-$_SERVER["admin"] = true;
+if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in'] || !isset($_SESSION['admin']) || !$_SESSION['admin']) {
+    // Redirect to login page if not authenticated
+    header("Location: ../admin/login.php");
+    exit();
+}
 include_once "../includes/css_js.inc.php";
 include_once "../includes/db.inc.php";
 $dishes = getData();
