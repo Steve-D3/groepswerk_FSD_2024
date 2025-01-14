@@ -13,8 +13,6 @@ foreach ($data as $elem) {
 
 $extraPics = getExtraImages($id);
 
-
-
 ?>
 
 
@@ -283,7 +281,7 @@ $extraPics = getExtraImages($id);
                     <?php foreach ($extraPics as $pic): ?>
                         <?php
                         if (strpos($pic, "https") !== 0) {
-                            $pic = './images/' . $pic; // Prepend "./images/" if not starting with "https"
+                            $pic = './images/' . $pic;
                         }
                         ?>
                         <img src="<?= $pic; ?>" alt="">

@@ -1,14 +1,9 @@
 <?php
 
 include_once "../includes/db.inc.php";
-
-
 //Id van dish ophalen
 $dishId = $_POST['dishId'] ?? null;
-
 // echo "<p>Received dishId: [" . htmlspecialchars($dishId) . "] (type: " . gettype($dishId) . ")</p>";
-
-
 
 if (!$dishId) {
   echo "geen id dish gevonden ";
@@ -173,31 +168,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'], $_POST['short
     @media (max-width: 480px) {
       section {
         width: 95%;
-        /* Take up more of the screen */
         padding: 0.8rem;
-        /* Less padding */
 
         h1 {
           font-size: 1.1rem;
-          /* Adjusted title font */
         }
 
         form {
           label {
             font-size: 0.8rem;
-            /* Smaller font for labels */
           }
 
           input[type="text"],
           select {
             font-size: 0.8rem;
-            /* Smaller inputs */
             padding: 0.4rem;
           }
 
           button {
             font-size: 0.8rem;
-            /* Smaller button font */
             padding: 0.4rem 0.8rem;
           }
         }
